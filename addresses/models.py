@@ -13,7 +13,7 @@ class Address(models.Model):
     neighborhood = models.CharField(max_length=50, null=True)
 
     campaigns_projects = models.ForeignKey(
-        "campaigns_projects.Campaigns_projects",
+        "campaigns_projects.CampaignsProjects",
         on_delete=models.CASCADE,
         related_name="address"
     )
