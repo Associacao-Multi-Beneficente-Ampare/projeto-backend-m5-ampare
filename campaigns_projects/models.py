@@ -13,9 +13,8 @@ class CampaignsProjects(models.Model):
     age_majority = models.BooleanField(default=True, null=True)
 
 
-    user = models.ForeignKey(
+    voluntary_campaigns = models.ManyToManyField(
         "users.User",
-        on_delete=models.CASCADE,
         related_name="campaigns_projects",
     )
     
