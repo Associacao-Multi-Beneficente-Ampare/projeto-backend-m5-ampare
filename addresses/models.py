@@ -1,10 +1,11 @@
 from django.db import models
-
+import uuid
 
 class Address(models.Model):
     class Meta:
         ordering = ("id",)
         
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     address = models.CharField(max_length=100, null=True)
     number = models.CharField(max_length=50)
     complement = models.CharField(max_length=120, null=True)
