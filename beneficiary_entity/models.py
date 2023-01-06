@@ -1,5 +1,4 @@
 from django.db import models
-from beneficiary_entity import CampaignsProjects
 import uuid
 
 class Beneficiary_entity(models.Model):
@@ -13,4 +12,7 @@ class Beneficiary_entity(models.Model):
     email = models.EmailField(max_length=60)
     cnpj = models.CharField(max_length=14)
 
-    campaigns_projects = models.ManyToManyField(CampaignsProjects)
+    campaigns_projects = models.ManyToManyField(
+        "campaigns_projects.CampaignsProjects",
+        related_name="beneficiary_entity",
+    )

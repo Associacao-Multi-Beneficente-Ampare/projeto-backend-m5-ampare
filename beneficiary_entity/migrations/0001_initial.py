@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="CampaignsProjects",
+            name="Beneficiary_entity",
             fields=[
                 (
                     "id",
@@ -23,13 +23,14 @@ class Migration(migrations.Migration):
                         serialize=False,
                     ),
                 ),
-                ("name", models.CharField(max_length=100)),
-                ("is_active", models.BooleanField(default=True, null=True)),
-                ("start", models.DateField()),
-                ("end", models.DateField()),
-                ("date_created", models.DateTimeField(auto_now_add=True)),
-                ("date_update", models.DateField(auto_now=True)),
-                ("age_majority", models.BooleanField(default=True, null=True)),
+                ("name", models.CharField(max_length=60)),
+                ("data_do_cadastro", models.DateField()),
+                ("update_do_cadastro", models.DateField()),
+                ("email", models.EmailField(max_length=60)),
+                ("cnpj", models.CharField(max_length=14)),
             ],
+            options={
+                "ordering": ("id",),
+            },
         ),
     ]
