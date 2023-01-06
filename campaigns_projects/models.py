@@ -11,6 +11,7 @@ class CampaignsProjects(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_update = models.DateField(auto_now=True)
 
+
     user = models.ForeignKey(
         "users.User",
         on_delete=models.CASCADE,
