@@ -10,6 +10,7 @@ class CampaignsProjects(models.Model):
     end = models.DateField()
     date_created = models.DateTimeField(auto_now_add=True)
     date_update = models.DateField(auto_now=True)
+    age_majority = models.BooleanField(default=True, null=True)
 
     user = models.ForeignKey(
         "users.User",
