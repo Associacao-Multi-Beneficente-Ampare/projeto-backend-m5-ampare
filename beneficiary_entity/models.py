@@ -1,5 +1,5 @@
 from django.db import models
-from beneficiary_entity import CampaignsProjects
+from campaigns_projects.models import CampaignsProjects
 
 
 class Beneficiary_entity(models.Model):
