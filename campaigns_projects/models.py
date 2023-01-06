@@ -11,13 +11,12 @@ class CampaignsProjects(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_update = models.DateField(auto_now=True)
 
-    """
+
     user = models.ForeignKey(
-        "user.User",
+        "users.User",
         on_delete=models.CASCADE,
         related_name="campaigns_projects",
     )
-    """
     
     def __repr__(self) -> str:
         return f"<CampaignsProjects [{self.id}] - {self.name}>"
