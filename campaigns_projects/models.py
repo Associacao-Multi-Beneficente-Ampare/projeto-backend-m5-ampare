@@ -12,6 +12,7 @@ class CampaignsProjects(models.Model):
     date_update = models.DateField(auto_now=True)
     age_majority = models.BooleanField(default=True, null=True)
 
+
     user = models.ForeignKey(
         "users.User",
         on_delete=models.CASCADE,
