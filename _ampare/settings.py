@@ -52,6 +52,7 @@ MY_APPS = [
     "users",
     "campaigns_projects",
     "addresses",
+    "beneficiary_entity"
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + MY_APPS
