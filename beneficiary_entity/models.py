@@ -1,5 +1,4 @@
 from django.db import models
-from beneficiary_entity import CampaignsProjects
 import uuid
 
 
