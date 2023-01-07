@@ -16,16 +16,15 @@ class CampaignsProjectsSerializer(serializers.ModelSerializer):
             "date_created",
             "date_update",
             "age_majority",
-            "campaign_address"
         ]
 
-    campaign_address = AddressSerializer()
+    """campaign_address = AddressSerializer()
 
      
     def create(self, validated_data: dict) -> CampaignsProjects:
-        address_data = validated_data.pop("address")
+        address_data = validated_data.pop("campaign_address")
 
         address,created = Address.objects.get_or_create(**address_data)
         campaign_obj = CampaignsProjects.objects.create(**validated_data, address=address)
 
-        return campaign_obj
+        return campaign_obj"""
