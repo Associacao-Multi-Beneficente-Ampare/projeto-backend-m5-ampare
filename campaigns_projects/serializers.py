@@ -15,6 +15,3 @@ class CampaignsProjectsSerializer(serializers.ModelSerializer):
             "date_update",
             "age_majority",
         ]
-
-    def create(self, validated_data):
-        return CampaignsProjects.objects.create(**validated_data)
