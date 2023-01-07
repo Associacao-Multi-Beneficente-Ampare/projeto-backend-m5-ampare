@@ -13,9 +13,15 @@ class CampaignsProjects(models.Model):
     age_majority = models.BooleanField(default=True, null=True)
 
 
+    institution_campaigns = models.ForeignKey(
+        "users.User",
+        on_delete=models.CASCADE,
+        related_name="project",
+    )
+
     voluntary_campaigns = models.ManyToManyField(
         "users.User",
-        related_name="campaigns_projects",
+        related_name="campaign",
     )
     
     def __repr__(self) -> str:
