@@ -10,3 +10,5 @@ class CampaignsProjectsView(generics.ListCreateAPIView):
 
     serializer_class = CampaignsProjectsSerializer
     queryset = CampaignsProjects.objects.all()
+
+# Create your views here.

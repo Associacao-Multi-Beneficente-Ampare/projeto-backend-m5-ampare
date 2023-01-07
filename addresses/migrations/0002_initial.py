@@ -14,10 +14,10 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name="address",
-            name="campaigns_projects",
-            field=models.ForeignKey(
+            name="campaign_project",
+            field=models.OneToOneField(
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name="address",
+                related_name="campaign_address",
                 to="campaigns_projects.campaignsprojects",
             ),
         ),

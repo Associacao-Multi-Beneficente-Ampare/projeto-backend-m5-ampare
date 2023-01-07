@@ -28,8 +28,5 @@ class Migration(migrations.Migration):
                 ("city_state", models.CharField(max_length=50, null=True)),
                 ("neighborhood", models.CharField(max_length=50, null=True)),
             ],
-            options={
-                "ordering": ("id",),
-            },
         ),
     ]
