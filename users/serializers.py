@@ -9,7 +9,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "name",
-            "username",
             "password",
             "cnpj",
             "birth",

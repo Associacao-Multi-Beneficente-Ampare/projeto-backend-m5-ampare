@@ -13,7 +13,6 @@ class AddressSerializer(serializers.ModelSerializer):
             "zipcode",
             "city_state",
             "neighborhood",
-            "campaign_project_id",
         ]
 
     def create(self, validated_data):

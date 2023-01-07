@@ -1,4 +1,5 @@
 from django.db import models
+
 import uuid
 
 
@@ -24,6 +25,7 @@ class CampaignsProjects(models.Model):
         "users.User",
         related_name="campaign",
     )
+    
 
     def __repr__(self) -> str:
         return f"<CampaignsProjects [{self.id}] - {self.name}>"
