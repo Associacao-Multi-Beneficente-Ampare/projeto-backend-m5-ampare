@@ -16,10 +16,13 @@ class UserSerializer(serializers.ModelSerializer):
             "telephone",
             "email",
             "is_superuser",
+            "is_institution",
         ]
         extra_kwargs = {
             "password": {"write_only": True},
+            "is_superuser":{"write_only": True},
         }
+    is_institution = serializers.BooleanField(source='is_superuser')
 
     email = serializers.EmailField(
         validators=[UniqueValidator(queryset=User.objects.all())],

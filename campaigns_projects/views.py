@@ -11,6 +11,8 @@ class CampaignsProjectsView(generics.ListCreateAPIView):
     serializer_class = CampaignsProjectsSerializer
     queryset = CampaignsProjects.objects.all()
 
+
     def perform_create(self, serializer):
         userId = self.request.user 
         serializer.save(institution_campaigns=userId)
+
