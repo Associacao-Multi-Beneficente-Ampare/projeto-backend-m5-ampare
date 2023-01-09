@@ -18,6 +18,7 @@ class CampaignsProjects(models.Model):
         related_name="campaigns_projects",
     )
     
+    
     def __repr__(self) -> str:
         return f"<CampaignsProjects [{self.id}] - {self.name}>"
 
