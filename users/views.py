@@ -2,11 +2,7 @@ from rest_framework import generics
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .pagination import CustomPageNumberPagination
 from drf_spectacular.utils import extend_schema
-
-# from drf_spectacular.utils import extend_schema
-
 from .serializers import UserSerializer
-
 # from .permissions import IsAccountOwner
 from .models import User
 
