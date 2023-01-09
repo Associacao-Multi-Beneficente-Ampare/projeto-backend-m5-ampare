@@ -1,16 +1,15 @@
 from django.db import models
-import uuid
+from beneficiary_entity import CampaignsProjects
 
 
 class Beneficiary_entity(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
+    class Meta:
+        ordering = ("id",)
+
     name = models.CharField(max_length=60)
     data_do_cadastro = models.DateField(auto_now_add=False)
     update_do_cadastro = models.DateField(auto_now=False)
     email = models.EmailField(max_length=60)
     cnpj = models.CharField(max_length=14)
 
-    campaigns_projects = models.ManyToManyField(
-        "campaigns_projects.CampaignsProjects",
-        related_name="beneficiary_entity",
-    )
+    campaigns_projects = models.ManyToManyField(CampaignsProjects)

@@ -1,7 +1,5 @@
 from rest_framework import serializers
 from .models import CampaignsProjects
-from addresses.serializers import AddressSerializer
-from addresses.models import Address
 
 
 class CampaignsProjectsSerializer(serializers.ModelSerializer):
