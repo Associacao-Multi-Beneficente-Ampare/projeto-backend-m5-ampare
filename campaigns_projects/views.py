@@ -3,6 +3,7 @@ from .serializers import CampaignsProjectsSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework import generics
+import ipdb
 
 
 class CampaignsProjectsView(generics.ListCreateAPIView):
@@ -14,6 +15,6 @@ class CampaignsProjectsView(generics.ListCreateAPIView):
 
 
     def perform_create(self, serializer):
-        userId = self.request.user 
+        userId = self.request.user
         serializer.save(institution_campaigns=userId)
 
