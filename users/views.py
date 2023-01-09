@@ -21,7 +21,7 @@ class UserView(generics.ListCreateAPIView, CustomPageNumberPagination):
         description="List all users",
     )
     def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+        return self.list(request, *args, **kwargs)
 
     @extend_schema(
         tags=["users"],
@@ -29,7 +29,7 @@ class UserView(generics.ListCreateAPIView, CustomPageNumberPagination):
         description="create an user",
     )
     def post(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+        return self.create(request, *args, **kwargs)
 
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):

@@ -20,7 +20,7 @@ class CampaignsProjectsView(generics.ListCreateAPIView, CustomPageNumberPaginati
         description="List a Campaigns Project",
     )
     def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+        return self.list(request, *args, **kwargs)
 
     @extend_schema(
         tags=["CampaignsProjects"],
@@ -28,4 +28,4 @@ class CampaignsProjectsView(generics.ListCreateAPIView, CustomPageNumberPaginati
         description="Create a Campaigns Project",
     )
     def post(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+        return self.create(request, *args, **kwargs)
