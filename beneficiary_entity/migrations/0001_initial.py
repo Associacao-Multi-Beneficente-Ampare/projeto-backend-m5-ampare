@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Address",
+            name="Beneficiary_entity",
             fields=[
                 (
                     "id",
@@ -23,12 +23,11 @@ class Migration(migrations.Migration):
                         serialize=False,
                     ),
                 ),
-                ("address", models.CharField(max_length=100)),
-                ("number", models.CharField(max_length=50)),
-                ("complement", models.CharField(max_length=120, null=True)),
-                ("zipcode", models.CharField(max_length=50)),
-                ("city_state", models.CharField(max_length=50)),
-                ("neighborhood", models.CharField(max_length=50)),
+                ("name", models.CharField(max_length=60)),
+                ("data_do_cadastro", models.DateField()),
+                ("update_do_cadastro", models.DateField()),
+                ("email", models.EmailField(max_length=60)),
+                ("cnpj", models.CharField(max_length=14)),
             ],
         ),
     ]
