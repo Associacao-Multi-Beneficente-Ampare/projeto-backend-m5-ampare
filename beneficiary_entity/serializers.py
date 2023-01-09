@@ -20,7 +20,7 @@ class BeneficiaryEntitySerializer(serializers.ModelSerializer):
     )
     
     def create(self, validated_data: dict) -> BeneficiaryEntity:
-        return BeneficiaryEntity.objects.create_user(**validated_data)
+        return BeneficiaryEntity.objects.create(**validated_data)
 
     def update(self, instance: BeneficiaryEntity, validated_data: dict) -> BeneficiaryEntity:
         for key, value in validated_data.items():
