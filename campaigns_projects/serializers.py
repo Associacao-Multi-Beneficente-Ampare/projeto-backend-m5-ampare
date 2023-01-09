@@ -1,9 +1,9 @@
 from rest_framework import serializers
 from .models import CampaignsProjects
-
+from addresses.serializers import AddressSerializer
 
 class CampaignsProjectsSerializer(serializers.ModelSerializer):
-
+    campaign_address = AddressSerializer(read_only=True)
     class Meta:
         model = CampaignsProjects
         fields = [
@@ -17,9 +17,6 @@ class CampaignsProjectsSerializer(serializers.ModelSerializer):
             "age_majority",
             "campaign_address"
         ]
-        read_only_fields = ["campaign_address"]
-
-    campaign_address = AddressSerializer()
 
      
     def create(self, validated_data: dict) -> CampaignsProjects:
