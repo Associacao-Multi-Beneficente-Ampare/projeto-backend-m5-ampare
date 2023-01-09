@@ -17,3 +17,5 @@ class AddressSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return Address.objects.create(**validated_data)
+
+        # teste
