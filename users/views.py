@@ -1,6 +1,6 @@
 from rest_framework import generics
 from rest_framework_simplejwt.authentication import JWTAuthentication
-
+from .pagination import CustomPageNumberPagination
 
 #from drf_spectacular.utils import extend_schema
 
@@ -10,7 +10,7 @@ from .models import User
 
 
 
-class UserView(generics.ListCreateAPIView):
+class UserView(generics.ListCreateAPIView, CustomPageNumberPagination):
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
