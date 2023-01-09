@@ -16,5 +16,7 @@ class AddressSerializer(serializers.ModelSerializer):
             "campaign_project_id",
         ]
 
+        ##teste
+
     def create(self, validated_data):
         return Address.objects.create(**validated_data)
