@@ -16,5 +16,7 @@ class CampaignsProjectsSerializer(serializers.ModelSerializer):
             "age_majority",
         ]
 
+    ##asdasd
+
     def create(self, validated_data):
         return CampaignsProjects.objects.create(**validated_data)
