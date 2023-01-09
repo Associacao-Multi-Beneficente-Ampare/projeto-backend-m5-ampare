@@ -1,24 +1,18 @@
 from django.db import models
+import uuid
 
 
 class Address(models.Model):
-    class Meta:
-        ordering = ("id",)
-        
-    address = models.CharField(max_length=100, null=True)
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
+    address = models.CharField(max_length=100)
     number = models.CharField(max_length=50)
     complement = models.CharField(max_length=120, null=True)
     zipcode = models.CharField(max_length=50)
-    city_state = models.CharField(max_length=50, null=True)
-    neighborhood = models.CharField(max_length=50, null=True)
+    city_state = models.CharField(max_length=50)
+    neighborhood = models.CharField(max_length=50)
 
-    campaigns_projects = models.ForeignKey(
+    campaign_project = models.OneToOneField(
         "campaigns_projects.CampaignsProjects",
         on_delete=models.CASCADE,
-        related_name="address"
+        related_name="campaign_address",
     )
-
-
-
-
-

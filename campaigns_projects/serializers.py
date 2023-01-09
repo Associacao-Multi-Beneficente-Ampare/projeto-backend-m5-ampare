@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import CampaignsProjects
+from addresses.serializers import AddressSerializer
+from addresses.models import Address
 
 
 class CampaignsProjectsSerializer(serializers.ModelSerializer):
@@ -16,5 +18,13 @@ class CampaignsProjectsSerializer(serializers.ModelSerializer):
             "age_majority",
         ]
 
-    def create(self, validated_data):
-        return CampaignsProjects.objects.create(**validated_data)
+    """campaign_address = AddressSerializer()
+
+     
+    def create(self, validated_data: dict) -> CampaignsProjects:
+        address_data = validated_data.pop("campaign_address")
+
+        address,created = Address.objects.get_or_create(**address_data)
+        campaign_obj = CampaignsProjects.objects.create(**validated_data, address=address)
+
+        return campaign_obj"""

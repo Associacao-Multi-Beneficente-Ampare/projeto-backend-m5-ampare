@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 import dotenv
+from datetime import timedelta
 
 dotenv.load_dotenv()
 
@@ -51,6 +52,7 @@ MY_APPS = [
     "users",
     "campaigns_projects",
     "addresses",
+    "beneficiary_entity"
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + MY_APPS
@@ -90,18 +92,18 @@ WSGI_APPLICATION = "_ampare.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-	"default": {
-	"ENGINE": "django.db.backends.postgresql",
-	"NAME": os.getenv("POSTGRES_DB_NAME"),
-	"USER": os.getenv("POSTGRES_USERNAME"),
-	"PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-	"HOST": "127.0.0.1",
-	"PORT": "5432",
-},
-"outro_nome": {
-	"ENGINE": "django.db.backends.sqlite3",
-	"NAME": BASE_DIR / "db.sqlite3",
-	},
+    # 	"default": {
+    # 	"ENGINE": "django.db.backends.postgresql",
+    # 	"NAME": os.getenv("POSTGRES_DB_NAME"),
+    # 	"USER": os.getenv("POSTGRES_USERNAME"),
+    # 	"PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+    # 	"HOST": "127.0.0.1",
+    # 	"PORT": "5432",
+    # },
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    },
 }
 
 
@@ -140,6 +142,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=15),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
