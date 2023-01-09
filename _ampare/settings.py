@@ -45,6 +45,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "rest_framework",
+    "drf_spectacular",
 ]
 
 MY_APPS = [
@@ -64,6 +65,18 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+REST_FRAMEWORK = {
+    # YOUR SETTINGS
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "ampare",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": True,
+    # OTHER SETTINGS
+}
 
 ROOT_URLCONF = "_ampare.urls"
 
@@ -90,18 +103,18 @@ WSGI_APPLICATION = "_ampare.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-	"default": {
-	"ENGINE": "django.db.backends.postgresql",
-	"NAME": os.getenv("POSTGRES_DB_NAME"),
-	"USER": os.getenv("POSTGRES_USERNAME"),
-	"PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-	"HOST": "127.0.0.1",
-	"PORT": "5432",
-},
-"outro_nome": {
-	"ENGINE": "django.db.backends.sqlite3",
-	"NAME": BASE_DIR / "db.sqlite3",
-	},
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("POSTGRES_DB_NAME"),
+        "USER": os.getenv("POSTGRES_USERNAME"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
+    },
+    "outro_nome": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    },
 }
 
 
