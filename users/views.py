@@ -72,3 +72,19 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     )
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+
+class UserListInstitutionView(generics.ListAPIView):
+
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+    def get_queryset(self):
+        route_parameter = self.request.GET.get("is_superuser")
+
+        if route_parameter:
+
+            queryset = User.objects.filter(is_superuser=True)
+            return queryset
+
+        return super().get_queryset()
