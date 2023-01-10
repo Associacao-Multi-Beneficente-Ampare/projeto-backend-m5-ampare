@@ -14,8 +14,6 @@ class AddressSerializer(serializers.ModelSerializer):
             "city_state",
             "neighborhood",
         ]
-        ##teste
 
-        
     def create(self, validated_data):
         return Address.objects.create(**validated_data)
