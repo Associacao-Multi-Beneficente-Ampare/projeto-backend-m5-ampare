@@ -3,7 +3,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from .pagination import CustomPageNumberPagination
 from drf_spectacular.utils import extend_schema
 
-# from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import extend_schema
 
 from .serializers import UserSerializer
 
@@ -31,9 +31,19 @@ class UserView(generics.ListCreateAPIView, CustomPageNumberPagination):
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
+    def get_queryset(self):
+        route_parameter = self.request.GET.get("is_superuser")
+
+        if route_parameter:
+
+            queryset = User.objects.filter(is_superuser=False)
+            return queryset
+
+        return super().get_queryset()
+
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
-    # authentication_classes = [JWTAuthentication]
+    authentication_classes = [JWTAuthentication]
     # permission_classes = [IsAccountOwner]
 
     serializer_class = UserSerializer

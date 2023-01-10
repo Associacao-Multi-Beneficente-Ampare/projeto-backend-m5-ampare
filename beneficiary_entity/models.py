@@ -5,8 +5,8 @@ import uuid
 class BeneficiaryEntity(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     name = models.CharField(max_length=60)
-    date_created = models.DateField(auto_now_add=False)
-    date_updated = models.DateField(auto_now=False)
+    date_created = models.DateField(auto_now_add=True)
+    date_updated = models.DateField(auto_now=True)
     email = models.EmailField(max_length=60)
     cnpj = models.CharField(max_length=14, unique=True)
 
