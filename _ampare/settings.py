@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', False)
 
-ALLOWED_HOSTS = ["web-production-1446.up.railway.app", "0.0.0.0"]
+ALLOWED_HOSTS = ['web-production-1446.up.railway.app', "0.0.0.0"]
 
 
 # Application definition
@@ -113,7 +113,7 @@ DATABASES = {
         "USER": os.getenv("POSTGRES_USERNAME"),
         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
         "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "PORT": 5432,
     },
     "outro_nome": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -125,7 +125,7 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 
 if DATABASE_URL:
     db_deploy = dj_database_url.config(
-        default=DATABASE_URL, conn_max_age=500, ssl_require=True)
+        default=DATABASE_URL)
     DATABASES['default'].update(db_deploy)
     DEBUG = False
 
