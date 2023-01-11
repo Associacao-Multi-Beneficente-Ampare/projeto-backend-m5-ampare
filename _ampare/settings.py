@@ -128,9 +128,9 @@ if DATABASE_URL:
     db_deploy = dj_database_url.config(
         default=DATABASE_URL)
     DATABASES['default'].update(db_deploy)
-    DEBUG = True
+    DEBUG = False
 
-if DEBUG:
+if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
