@@ -1,6 +1,7 @@
 from .models import CampaignsProjects
 from .serializers import CampaignsProjectsSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from users.permissions import IsAdminOrReadOnly
 from rest_framework import generics
 from .pagination import CustomPageNumberPagination
@@ -32,3 +33,14 @@ class CampaignsProjectsView(generics.ListCreateAPIView, CustomPageNumberPaginati
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+class CampaignsProjectsDetailView(generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    serializer_class = CampaignsProjectsSerializer
+    queryset = CampaignsProjects.objects.all()
+
+    lookup_url_kwarg = 'pk'
+
+    
