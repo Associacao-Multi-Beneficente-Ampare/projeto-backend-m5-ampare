@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dotenv
 import dj_database_url
+from datetime import timedelta
 
 dotenv.load_dotenv()
 
@@ -151,6 +152,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=15),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
