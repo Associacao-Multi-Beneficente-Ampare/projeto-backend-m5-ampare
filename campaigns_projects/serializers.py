@@ -2,10 +2,12 @@ from rest_framework import serializers
 from .models import CampaignsProjects
 from addresses.serializers import AddressSerializer
 from beneficiary_entity.serializers import BeneficiaryEntitySerializer
+from users.serializers import UserSerializer
 
 class CampaignsProjectsSerializer(serializers.ModelSerializer):
     campaign_address = AddressSerializer(read_only=True)
     beneficiary_entity = BeneficiaryEntitySerializer(read_only=True, many=True)
+    voluntary_campaigns = UserSerializer(read_only=True, many=True)
 
     class Meta:
         model = CampaignsProjects
@@ -20,6 +22,7 @@ class CampaignsProjectsSerializer(serializers.ModelSerializer):
             "age_majority",
             "campaign_address",
             "beneficiary_entity",
+            "voluntary_campaigns"
         ]
 
         

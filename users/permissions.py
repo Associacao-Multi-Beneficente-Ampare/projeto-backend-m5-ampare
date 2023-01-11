@@ -30,3 +30,12 @@ class IsOwner(permissions.BasePermission):
             and obj == request.user
             or request.user.is_superuser
         )
+
+
+class IsVoluntary(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj: User) -> bool:
+        return (
+            request.user.is_authenticated
+            and obj == request.user
+            
+        )
