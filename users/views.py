@@ -5,7 +5,8 @@ from drf_spectacular.utils import extend_schema
 from django.shortcuts import get_object_or_404
 from .serializers import UserSerializer
 
-# from .permissions import IsAccountOwner
+from .permissions import IsAdminOrReadOnly, IsAdminOrUser, IsOwner
+from rest_framework.permissions import IsAdminUser
 from .models import User
 from campaigns_projects.models import CampaignsProjects
 
@@ -25,7 +26,8 @@ class UserView(generics.CreateAPIView, CustomPageNumberPagination):
 
 class UserListInstitutionView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAccountOwner] somente instituição
+
+    permission_classes = [IsAdminUser]
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
@@ -51,7 +53,9 @@ class UserListInstitutionView(generics.ListAPIView):
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAccountOwner] o próprio usuário e instituição
+
+    permission_classes = [IsOwner]
+
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
@@ -83,7 +87,9 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class UserListVolunteersView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAccountOwner] somente instituição
+
+    permission_classes = [IsAdminUser]
+
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
