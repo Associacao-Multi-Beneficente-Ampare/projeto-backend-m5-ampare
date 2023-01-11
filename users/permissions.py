@@ -4,7 +4,9 @@ from users.models import User
 
 
 class IsAdminOrReadOnly(permissions.BasePermission):
-    def has_permission(self, request, view):
+
+    def has_permission(self, request, view) -> bool:
+        
         if request.method in permissions.SAFE_METHODS:
             return True
         
@@ -14,13 +16,10 @@ class IsAdminOrReadOnly(permissions.BasePermission):
         return False
 
 
-class IsAdminOrUser(permissions.BasePermission):
-    def has_object_permission(self, request, view, obj: User):
+class IsInstitution(permissions.BasePermission):
+    def has_permission(self, request, view) -> bool:
+        return (request.user.is_authenticated and request.user.is_superuser)
 
-        if request.user.is_authenticated and request.user.is_superuser:
-            return True
-
-        return request.user == obj
 
 
 class IsOwner(permissions.BasePermission):
@@ -33,9 +32,6 @@ class IsOwner(permissions.BasePermission):
 
 
 class IsVoluntary(permissions.BasePermission):
-    def has_object_permission(self, request, view, obj: User) -> bool:
-        return (
-            request.user.is_authenticated
-            and obj == request.user
-            
-        )
+    def has_permission(self, request, view) -> bool:
+        return (request.user.is_authenticated and request.user.is_superuser == False)
+

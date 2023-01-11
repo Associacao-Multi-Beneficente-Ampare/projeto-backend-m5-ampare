@@ -3,11 +3,10 @@ from rest_framework.views import APIView, Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .pagination import CustomPageNumberPagination
 from drf_spectacular.utils import extend_schema
-from django.shortcuts import get_object_or_404
 from .serializers import UserSerializer
-from .permissions import IsAdminOrReadOnly, IsAdminOrUser, IsOwner, IsVoluntary
-from rest_framework.permissions import IsAdminUser
+from .permissions import IsInstitution, IsOwner, IsVoluntary
 from .models import User
+from django.shortcuts import get_object_or_404
 from campaigns_projects.models import CampaignsProjects
 from rest_framework import status
 import ipdb
@@ -28,8 +27,7 @@ class UserView(generics.CreateAPIView, CustomPageNumberPagination):
 
 class UserListInstitutionView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
-
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsInstitution]
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
@@ -90,7 +88,7 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
 class UserListVolunteersView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
 
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsInstitution]
 
 
     serializer_class = UserSerializer
@@ -114,7 +112,5 @@ class UserVoluntaryCampaignsProjectsView(APIView):
     def patch(self, request, pk):
         campaign = get_object_or_404(CampaignsProjects, pk=pk)
         campaign.voluntary_campaigns.add(request.user)
-        if request.user.is_superuser:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
         
         return Response(status=status.HTTP_204_NO_CONTENT)
