@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from .models import BeneficiaryEntity
-
+from campaigns_projects.models import CampaignsProjects
+import ipdb
 
 class BeneficiaryEntitySerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,7 +22,13 @@ class BeneficiaryEntitySerializer(serializers.ModelSerializer):
 
 
     def create(self, validated_data: dict) -> BeneficiaryEntity:
-        return BeneficiaryEntity.objects.create(**validated_data)
+        campaigns_data = validated_data.pop("campaigns_projects")
+
+        entity = BeneficiaryEntity.objects.create(**validated_data)
+
+        entity.campaigns_projects.add(campaigns_data)
+        
+        return entity
 
 
     def update(self, instance: BeneficiaryEntity, validated_data: dict) -> BeneficiaryEntity:
