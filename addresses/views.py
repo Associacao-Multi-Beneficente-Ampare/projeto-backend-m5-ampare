@@ -1,6 +1,6 @@
 from rest_framework import generics
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from users.permissions import IsAdminOrReadOnly
 from django.shortcuts import get_object_or_404
 from .serializers import AddressSerializer
 from .models import Address
@@ -10,7 +10,7 @@ import ipdb
 
 class AddressView(generics.ListCreateAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
     serializer_class = AddressSerializer
     queryset = Address.objects.all()
 
