@@ -26,6 +26,7 @@ class UserView(generics.CreateAPIView, CustomPageNumberPagination):
 
 class UserListInstitutionView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
+
     permission_classes = [IsAdminUser]
 
     serializer_class = UserSerializer
@@ -52,7 +53,9 @@ class UserListInstitutionView(generics.ListAPIView):
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [JWTAuthentication]
+
     permission_classes = [IsOwner]
+
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
@@ -84,7 +87,9 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class UserListVolunteersView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
+
     permission_classes = [IsAdminUser]
+
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
