@@ -27,11 +27,9 @@ class UserSerializer(serializers.ModelSerializer):
         validators=[UniqueValidator(queryset=User.objects.all())],
     )
 
-
     def create(self, validated_data: dict) -> User:
         return User.objects.create_user(**validated_data)
 
-        
     def update(self, instance: User, validated_data: dict) -> User:
         for key, value in validated_data.items():
             setattr(instance, key, value)
