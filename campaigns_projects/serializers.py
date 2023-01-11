@@ -1,10 +1,14 @@
 from rest_framework import serializers
 from .models import CampaignsProjects
 from addresses.serializers import AddressSerializer
-
+from beneficiary_entity.serializers import BeneficiaryEntitySerializer
+from users.serializers import UserSerializer
 
 class CampaignsProjectsSerializer(serializers.ModelSerializer):
     campaign_address = AddressSerializer(read_only=True)
+    beneficiary_entity = BeneficiaryEntitySerializer(read_only=True, many=True)
+    voluntary_campaigns = UserSerializer(read_only=True, many=True)
+
     class Meta:
         model = CampaignsProjects
         fields = [
@@ -16,7 +20,9 @@ class CampaignsProjectsSerializer(serializers.ModelSerializer):
             "date_created",
             "date_update",
             "age_majority",
-            "campaign_address"
+            "campaign_address",
+            "beneficiary_entity",
+            "voluntary_campaigns"
         ]
 
         
@@ -25,4 +31,5 @@ class CampaignsProjectsSerializer(serializers.ModelSerializer):
         # if address_data:
         #     address,created = Address.objects.get_or_create(**address_data)
         campaign_obj = CampaignsProjects.objects.create(**validated_data)
+
         return campaign_obj

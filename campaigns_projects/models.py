@@ -17,6 +17,12 @@ class CampaignsProjects(models.Model):
         "users.User",
         related_name="campaigns_projects",
     )
+
+    user = models.ForeignKey(
+        "users.User",
+        models.CASCADE,
+        related_name="campaigns"
+    )
     
     
     def __repr__(self) -> str:
