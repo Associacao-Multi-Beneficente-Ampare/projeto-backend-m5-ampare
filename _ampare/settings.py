@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', True)
+DEBUG = os.getenv('DEBUG', False)
 
 ALLOWED_HOSTS = ['web-production-1446.up.railway.app', "0.0.0.0"]
 
@@ -128,9 +128,9 @@ if DATABASE_URL:
     db_deploy = dj_database_url.config(
         default=DATABASE_URL)
     DATABASES['default'].update(db_deploy)
-    DEBUG = False
+    DEBUG = True
 
-if not DEBUG:
+if DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
