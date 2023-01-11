@@ -87,7 +87,9 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class UserListVolunteersView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
+
     permission_classes = [IsInstitution]
+
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
