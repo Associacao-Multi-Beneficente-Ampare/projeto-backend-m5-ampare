@@ -1,14 +1,16 @@
 from rest_framework import generics
+from rest_framework.views import APIView, Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .pagination import CustomPageNumberPagination
 from drf_spectacular.utils import extend_schema
 from django.shortcuts import get_object_or_404
 from .serializers import UserSerializer
-
-from .permissions import IsAdminOrReadOnly, IsAdminOrUser, IsOwner
+from .permissions import IsAdminOrReadOnly, IsAdminOrUser, IsOwner, IsVoluntary
 from rest_framework.permissions import IsAdminUser
 from .models import User
 from campaigns_projects.models import CampaignsProjects
+from rest_framework import status
+import ipdb
 
 
 class UserView(generics.CreateAPIView, CustomPageNumberPagination):
@@ -105,12 +107,14 @@ class UserListVolunteersView(generics.ListAPIView):
         return super().get_queryset()
 
 
-"""class UserVoluntaryCampaignsProjectsView(generics.ListAPIView):
+class UserVoluntaryCampaignsProjectsView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsVoluntary]
 
-    serializer_class = UserSerializer
-    queryset = User.objects.all()
-
-    def perform_create(self, serializer):
-        campaign_id = self.kwargs["pk"]
-        campaign = get_object_or_404(CampaignsProjects, pk=campaign_id)
-        serializer.save(campaign_projects=campaign)"""
+    def patch(self, request, pk):
+        campaign = get_object_or_404(CampaignsProjects, pk=pk)
+        campaign.voluntary_campaigns.add(request.user)
+        if request.user.is_superuser:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+        
+        return Response(status=status.HTTP_204_NO_CONTENT)
